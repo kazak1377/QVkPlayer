@@ -114,7 +114,6 @@ void MainWindow::setUiToSong(int row, int rowPrev)
     ui->musicWidget->item(row,2)->setFont(fontBold);
     ui->musicWidget->scrollToItem(ui->musicWidget->item(row,0));
     qDebug()<<ui->musicWidget->item(row,3)->text();
-    //toLog<<ui->musicWidget->item(row,3)->text();
 }
 
 void MainWindow::isPlaying()
@@ -135,7 +134,6 @@ void MainWindow::selectThatSong(int row,int /*coulumn*/)
 void MainWindow::playThatSong(int row,int coulumn)
 {
     qDebug()<<row<<" "<<coulumn;
-    //toLog<<row<<" "<<coulumn;
     emit playUrl(row);
 }
 
@@ -147,12 +145,6 @@ void MainWindow::connectVolumeSlider(Phonon::AudioOutput *audioOutput)
 void MainWindow::connectSeekSlider(Phonon::MediaObject *mediaObject)
 {
     ui->seekSlider->setMediaObject(mediaObject);
-    connect(mediaObject,SIGNAL(bufferStatus(int)),this,SLOT(caching(int)));
-}
-
-void MainWindow::caching(int val)
-{
-    qDebug()<<val;
 }
 
 void MainWindow::setTableLine(QStringList line)
@@ -196,7 +188,6 @@ void MainWindow::loginSlot()
 
 void MainWindow::replyFinished(QNetworkReply *reply)
 {
-//    qDebug()<<reply->readAll();
     if(reply->error() == QNetworkReply::NoError)
     {
         qDebug()<<"Audio list get";
@@ -261,9 +252,7 @@ void MainWindow::replyFinished(QNetworkReply *reply)
     else
     {
         qDebug()<<reply->errorString();
-//        *toLog<<reply->errorString();
     }
-    //toLog<<linkList;
     emit setPlayingOrder(linkList);
 }
 
@@ -285,6 +274,5 @@ void MainWindow::getAudioList()    //it is our request function
 
 MainWindow::~MainWindow()
 {
-    //bugReport->close();
     delete ui;
 }

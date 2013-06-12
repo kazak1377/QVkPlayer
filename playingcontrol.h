@@ -47,9 +47,7 @@ public slots:
     void setShuffle(bool);
 private slots:
     void setNext();
-    void playNext();
-    void cachState(int);
-    
+    void playNext();   
 };
 
 #endif // PLAYINGCONTROL_H
