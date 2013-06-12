@@ -85,8 +85,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
 
 }
 
-
-
 void MainWindow::about()
 {
     QMessageBox::information(this, tr("About QVkPlayer"),
@@ -122,10 +120,12 @@ void MainWindow::isPlaying()
 {
     ui->tooglePlayingButton->setIcon(QIcon(QPixmap(":/dark/icons/dark/gtk-media-pause.png")));
 }
+
 void MainWindow::isPaused()
 {
     ui->tooglePlayingButton->setIcon(QIcon(QPixmap(":/dark/icons/dark/gtk-media-play-ltr.png")));
 }
+
 void MainWindow::selectThatSong(int row,int coulumn)
 {
     ui->musicWidget->item(row,2)->setSelected(true);
@@ -137,14 +137,17 @@ void MainWindow::playThatSong(int row,int coulumn)
     //toLog<<row<<" "<<coulumn;
     emit playUrl(row);
 }
+
 void MainWindow::connectVolumeSlider(Phonon::AudioOutput *audioOutput)
 {
     ui->volumeSlider->setAudioOutput(audioOutput);
 }
+
 void MainWindow::connectSeekSlider(Phonon::MediaObject *mediaObject)
 {
     ui->seekSlider->setMediaObject(mediaObject);
 }
+
 void MainWindow::setTableLine(QStringList line)
 {
     int lastRow = ui->musicWidget->rowCount();
@@ -155,6 +158,7 @@ void MainWindow::setTableLine(QStringList line)
         ui->musicWidget->setItem(lastRow,i,item);
     }
 }
+
 QString MainWindow :: durationToHuman(int d)
 {
     int minutes = d/60;
@@ -168,17 +172,20 @@ QString MainWindow :: durationToHuman(int d)
         out = QString::number(minutes)+":"+QString::number(seconds);
     return out;
 }
+
 void MainWindow::setToken(QString value,QString value2)
 {
     token = value;
     userId = value2;
 }
+
 void MainWindow::loginSlot()
 {
     vkAuth *loginWindow = new vkAuth;
     QObject::connect(loginWindow,SIGNAL(tokenSet(QString,QString)),SLOT(setToken(QString,QString)));
     loginWindow->show();
 }
+
 void MainWindow::replyFinished(QNetworkReply *reply)
 {
 //    qDebug()<<reply->readAll();
@@ -251,6 +258,7 @@ void MainWindow::replyFinished(QNetworkReply *reply)
     //toLog<<linkList;
     emit setPlayingOrder(linkList);
 }
+
 void MainWindow::getAudioList()    //it is our request function
 {
     QUrl rAudioUrl("https://api.vk.com/method/audio.get.xml?");
