@@ -23,7 +23,7 @@ void customMessageHandler(QtMsgType type, const char *msg)
     }
 
     QFile outFile("debuglog.txt");
-    outFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    outFile.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream ts(&outFile);
     ts << txt << endl;
 }

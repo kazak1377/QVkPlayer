@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     ui->showTime->hide();
     ui->lineEdit->hide();
     ui->loopButton->hide();
+    ui->progressBar->hide();
     setWindowIcon(QIcon(QPixmap(":/dark/icons/qvk.ico")));
 
     ////////////////////////////////////////////////Creating actions

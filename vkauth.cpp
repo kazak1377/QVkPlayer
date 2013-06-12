@@ -25,7 +25,7 @@ void vkAuth::slotUrlChanged(QUrl url)
     qDebug()<<url;
     url = url.toString().replace("#","?");
     if (url.hasQueryItem("error"))
-    {// обработка неудачной авторизации
+    {// in case of unsuccessfull authorisation
         qDebug()<<"vk api returned error statment";
         return ;
     }
@@ -34,18 +34,18 @@ void vkAuth::slotUrlChanged(QUrl url)
         qDebug()<<"Accsess denided";
         return;
     }
-    //Открыть файл для записи token
+    //creating cookie file
     QFile file("token");
     file.open(QIODevice::ReadWrite | QIODevice::Text);
     QTextStream out(&file);
-    //дальше записываем данные юзера в переменные
+    //writing token and uid to vodiables
     token = url.queryItemValue("access_token");
     expires = url.queryItemValue("expires_in").toInt();
     uid = url.queryItemValue("user_id");
-    //так же и в файл
+    //... and to file
     out<<token;
     file.close();
-    //теперь должны получить файл с нашим Token
+    //now we should have an token file
     qDebug()<<"TOKEN:";
     qDebug() << token;
     qDebug()<<"USER_ID:";
