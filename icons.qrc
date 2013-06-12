@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/dark">
+        <file>icons/dark/gear.png</file>
+        <file>icons/dark/gtk_media_forward_ltr.png</file>
+        <file>icons/dark/gtk-media-forward-rtl.png</file>
+        <file>icons/dark/gtk-media-next-ltr.png</file>
+        <file>icons/dark/gtk-media-next-rtl.png</file>
+        <file>icons/dark/gtk-media-pause.png</file>
+        <file>icons/dark/gtk-media-play-ltr.png</file>
+        <file>icons/dark/gtk-media-stop.png</file>
+        <file>icons/dark/iSync-Icon.png</file>
+        <file>icons/Music-icon.png</file>
+        <file>icons/dark/repeat.png</file>
+        <file>icons/dark/shuffle.png</file>
+        <file>icons/qvk.ico</file>
+    </qresource>
+    <qresource prefix="/light">
+        <file>icons/light/document-properties.svg</file>
+        <file>icons/light/gear.png</file>
+        <file>icons/light/gtk_media_forward_ltr (1).png</file>
+        <file>icons/light/gtk-media-forward-rtl.png</file>
+        <file>icons/light/gtk-media-next-ltr.png</file>
+        <file>icons/light/gtk-media-next-ltr .png</file>
+        <file>icons/light/gtk-media-next-rtl.png</file>
+        <file>icons/light/gtk-media-pause.png</file>
+        <file>icons/light/gtk-media-play-ltr.png</file>
+        <file>icons/light/gtk-media-stop.png</file>
+        <file>icons/light/iSync-Icon.png</file>
+        <file>icons/Music-icon.png</file>
+        <file>icons/light/repeat.png</file>
+        <file>icons/light/shuffle.png</file>
+    </qresource>
+</RCC>
