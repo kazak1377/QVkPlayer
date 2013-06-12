@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     ui->showTime->hide();
     ui->lineEdit->hide();
     ui->loopButton->hide();
-    ui->progressBar->hide();
+    //ui->progressBar->hide();
     setWindowIcon(QIcon(QPixmap(":/dark/icons/qvk.ico")));
 
     ////////////////////////////////////////////////Creating actions
@@ -127,7 +127,7 @@ void MainWindow::isPaused()
     ui->tooglePlayingButton->setIcon(QIcon(QPixmap(":/dark/icons/dark/gtk-media-play-ltr.png")));
 }
 
-void MainWindow::selectThatSong(int row,int coulumn)
+void MainWindow::selectThatSong(int row,int /*coulumn*/)
 {
     ui->musicWidget->item(row,2)->setSelected(true);
 }
@@ -147,6 +147,12 @@ void MainWindow::connectVolumeSlider(Phonon::AudioOutput *audioOutput)
 void MainWindow::connectSeekSlider(Phonon::MediaObject *mediaObject)
 {
     ui->seekSlider->setMediaObject(mediaObject);
+    connect(mediaObject,SIGNAL(bufferStatus(int)),this,SLOT(caching(int)));
+}
+
+void MainWindow::caching(int val)
+{
+    qDebug()<<val;
 }
 
 void MainWindow::setTableLine(QStringList line)

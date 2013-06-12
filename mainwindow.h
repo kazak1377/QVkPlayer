@@ -53,6 +53,7 @@ private slots:
     void isPaused();
     void about();
     void selectThatSong(int,int);
+    void caching(int);
 signals:
     void playUrl(int);
     void setPlayingOrder(QList<QUrl>);

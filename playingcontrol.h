@@ -48,6 +48,7 @@ public slots:
 private slots:
     void setNext();
     void playNext();
+    void cachState(int);
     
 };
 

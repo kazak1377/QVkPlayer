@@ -18,12 +18,18 @@ playingControl::playingControl(QObject *parent) : QThread(parent)
     Phonon::Path path = Phonon::createPath(mediaObject, audioOutput);
     connect(mediaObject,SIGNAL(aboutToFinish()),SLOT(setNext()));
     connect(mediaObject,SIGNAL(finished()),SLOT(playNext()));
+    connect(mediaObject,SIGNAL(bufferStatus(int)),SLOT(cachState(int)));
 }
 
 void playingControl::run()
 {
     emit sentAudioOutput(audioOutput);
     emit sentMediaObject(mediaObject);
+}
+
+void playingControl::cachState(int val)
+{
+    qDebug()<<val;
 }
 
 int playingControl::randSong(int low,int high)
