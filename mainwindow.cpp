@@ -178,6 +178,7 @@ void MainWindow::setToken(QString value,QString value2)
 {
     token = value;
     userId = value2;
+    this->getAudioList();
 }
 
 void MainWindow::loginSlot()
