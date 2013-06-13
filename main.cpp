@@ -32,7 +32,7 @@ void customMessageHandler(QtMsgType type, const char *msg)
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //qInstallMsgHandler(customMessageHandler);
+    qInstallMsgHandler(customMessageHandler);
     a.setApplicationName("QVkMusicPlayer");
     MainWindow w;
     w.show();

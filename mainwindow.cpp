@@ -18,9 +18,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
 {
     ui->setupUi(this);
     ui->showTime->hide();
-    ui->lineEdit->hide();
+    //ui->lineEdit->hide();
     ui->loopButton->hide();
-    //ui->progressBar->hide();
     setWindowIcon(QIcon(QPixmap(":/dark/icons/qvk.ico")));
 
     ////////////////////////////////////////////////Creating actions
@@ -43,8 +42,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
 
     //table setting
     QStringList header;
-    header <<"Artist"<<"Title"<<"Duration"<< "link";   //write table header
-    ui->musicWidget->setHorizontalHeaderLabels(header); //set table header
+    //write table header
+    header <<"Artist"<<"Title"<<"Duration"<< "link";
+    //set table header
+    ui->musicWidget->setHorizontalHeaderLabels(header);
     ui->musicWidget->setShowGrid(false);
     //ui->musicWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->musicWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
@@ -67,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     connect(ui->nextButton,SIGNAL(clicked()),playControl,SLOT(playNextSong()));
     connect(ui->prevButton,SIGNAL(clicked()),playControl,SLOT(playPrevSong()));
     connect(ui->shuffButton,SIGNAL(toggled(bool)),playControl,SLOT(setShuffle(bool)));
+    connect(ui->lineEdit,SIGNAL(textChanged(QString)),SLOT(currentSearch(QString)));
     //some shitcode :-[
     //Sending Phonon objects to our class
     playControl->start();
@@ -84,6 +86,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
         getAudioList();
     }
 
+}
+
+void MainWindow::currentSearch(QString text)
+{
+    qDebug()<<ui->musicWidget->findItems(text,Qt::MatchContains);
+    //ui->musicWidget->SelectItems(ui->musicWidget->findItems(text,Qt::MatchContains));
 }
 
 void MainWindow::about()

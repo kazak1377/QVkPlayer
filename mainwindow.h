@@ -39,6 +39,7 @@ private:
     QMenu *eyemenu;
     void *customMessageHandler(QtMsgType type, const char *msg);
 
+
 public slots:
     void loginSlot();
     void getAudioList();
@@ -53,6 +54,7 @@ private slots:
     void isPaused();
     void about();
     void selectThatSong(int,int);
+    void currentSearch(QString text);
 signals:
     void playUrl(int);
     void setPlayingOrder(QList<QUrl>);
