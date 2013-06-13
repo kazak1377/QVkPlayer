@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
 {
     ui->setupUi(this);
     ui->showTime->hide();
+    ui->lineEdit->setPlaceholderText("Search here");
     //ui->lineEdit->hide();
     ui->loopButton->hide();
     setWindowIcon(QIcon(QPixmap(":/dark/icons/qvk.ico")));
@@ -38,12 +39,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     eyemenu->addAction(About);
     ///////////////////////////////////////////////making menu button
     ui->toolButton->setMenu(eyemenu);
-    ui->musicWidget->setColumnCount(4);
+    ui->musicWidget->setColumnCount(3);
 
     //table setting
     QStringList header;
     //write table header
-    header <<"Artist"<<"Title"<<"Duration"<< "link";
+    header <<"Artist"<<"Title"<<"Duration"/*<< "link"*/;
     //set table header
     ui->musicWidget->setHorizontalHeaderLabels(header);
     ui->musicWidget->setShowGrid(false);
@@ -51,7 +52,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     ui->musicWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->musicWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->musicWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->musicWidget->setColumnHidden(3,true);      //hiding the link column
 
     //some connections
     playingControl *playControl = new playingControl;
@@ -90,8 +90,21 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
 
 void MainWindow::currentSearch(QString text)
 {
-    qDebug()<<ui->musicWidget->findItems(text,Qt::MatchContains);
-    //ui->musicWidget->SelectItems(ui->musicWidget->findItems(text,Qt::MatchContains));
+    qDebug()<<"USER IS SEARCHING======================================";
+    ui->lineEdit->setStyleSheet("QLineEdit{background: #FFFFFF;}");    //white for search line
+    qDebug()<<text;
+    QList<QTableWidgetItem *> foundList;
+    foundList = ui->musicWidget->findItems(text,Qt::MatchContains);
+    if(!foundList.isEmpty())
+    {
+        qDebug()<<"Found at row: " ;
+        qDebug()<<foundList[0]->row()+1;
+        ui->musicWidget->selectRow(foundList[0]->row());
+    }
+    else
+    {
+        ui->lineEdit->setStyleSheet("QLineEdit{background: #FF6666;}");   //error for the searchline
+    }
 }
 
 void MainWindow::about()
@@ -238,7 +251,6 @@ void MainWindow::replyFinished(QNetworkReply *reply)
                 {
                     QString line = xml.readElementText();
                     tableLine.append(line);
-                    //                    qDebug()<<tableLine;
                     linkList.append(QUrl(line));
                     setTableLine(tableLine);
                 }
