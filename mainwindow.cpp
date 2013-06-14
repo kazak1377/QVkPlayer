@@ -23,6 +23,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     ui->loopButton->hide();
     setWindowIcon(QIcon(QPixmap(":/dark/icons/qvk.ico")));
 
+    //HOTKEYS
+
+
+    //\HOTKEYS
+
     ////////////////////////////////////////////////Creating actions
     QAction *login = new QAction(tr("Login"),this);
     QAction *About = new QAction(tr("About"),this);
