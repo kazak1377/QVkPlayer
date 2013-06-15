@@ -77,16 +77,18 @@ void playingControl::playNextSong()
 
 void playingControl::setShuffle(bool s)
 {
-    qDebug()<<s;
     shuffle = s;
     if(s==true)
+    {
+        qDebug()<<"SHUFFLE ON";
         nextSong = randSong(0,mediaList.size());
+    }
+    else
+        qDebug()<<"SHUFFLE OFF";
 }
 
 int playingControl::generateNextSong(int current)
 {
-    qDebug()<<mediaList.size();
-    qDebug()<<shuffle;
     if(shuffle == true)
     {
         return randSong(0,mediaList.size());

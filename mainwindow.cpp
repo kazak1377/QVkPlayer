@@ -139,7 +139,6 @@ void MainWindow::setUiToSong(int row, int rowPrev)
     ui->musicWidget->item(row,1)->setFont(fontBold);
     ui->musicWidget->item(row,2)->setFont(fontBold);
     ui->musicWidget->scrollToItem(ui->musicWidget->item(row,0));
-    qDebug()<<ui->musicWidget->item(row,3)->text();
 }
 
 void MainWindow::isPlaying()
@@ -159,7 +158,6 @@ void MainWindow::selectThatSong(int row,int /*coulumn*/)
 
 void MainWindow::playThatSong(int row,int coulumn)
 {
-    qDebug()<<row<<" "<<coulumn;
     emit playUrl(row);
 }
 
@@ -217,7 +215,6 @@ void MainWindow::replyFinished(QNetworkReply *reply)
     if(reply->error() == QNetworkReply::NoError)
     {
         qDebug()<<"Audio list get";
-        //toLog<<reply->readAll();
         QXmlStreamReader xml(reply);
         while(!xml.atEnd() && !xml.hasError())
         {
@@ -283,6 +280,7 @@ void MainWindow::replyFinished(QNetworkReply *reply)
 
 void MainWindow::getAudioList()    //it is our request function
 {
+    linkList.clear();
     QUrl rAudioUrl("https://api.vk.com/method/audio.get.xml?");
     ui->musicWidget->clear();
     ui->musicWidget->setRowCount(0);
