@@ -39,6 +39,12 @@ unix {
     INSTALLS += target desktop target1
     INSTALLS += icon_32 icon_64
 }
+
+win32 {
+#OS WIN
+RC_FILE = winicon.rc
+ }
+
 SOURCES += main.cpp\
         mainwindow.cpp \
     vkauth.cpp \
