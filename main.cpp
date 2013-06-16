@@ -8,7 +8,7 @@ void customMessageHandler(QtMsgType type, const char *msg)
     QString txt;
     switch (type) {
     case QtDebugMsg:
-        txt = QString("Debug: %1").arg(msg);
+        txt = QString("%1").arg(msg);
         break;
 
     case QtWarningMsg:
