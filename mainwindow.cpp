@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     ui->setupUi(this);
     ui->showTime->hide();
     ui->lineEdit->setPlaceholderText("Search here");
+    ui->sNext->hide();
+    ui->sPrev->hide();
     //ui->lineEdit->hide();
     ui->loopButton->hide();
     setWindowIcon(QIcon(QPixmap(":/dark/icons/qvk.ico")));
@@ -93,6 +95,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
 
 }
 
+void MainWindow::searchNav(int i)
+{
+}
+
 void MainWindow::currentSearch(QString text)
 {
     qDebug()<<"USER IS SEARCHING======================================";
@@ -102,6 +108,9 @@ void MainWindow::currentSearch(QString text)
     foundList = ui->musicWidget->findItems(text,Qt::MatchContains);
     if(!foundList.isEmpty())
     {
+        ui->sNext->show();
+        ui->sPrev->show();
+        ui->sPrev->setDisabled(true);
         qDebug()<<"Found at row: " ;
         qDebug()<<foundList[0]->row()+1;
         ui->musicWidget->selectRow(foundList[0]->row());

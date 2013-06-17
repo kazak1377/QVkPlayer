@@ -38,6 +38,7 @@ private:
     QAction *login;
     QMenu *eyemenu;
     void *customMessageHandler(QtMsgType type, const char *msg);
+    void searchNav(int i);
 
 
 public slots:
