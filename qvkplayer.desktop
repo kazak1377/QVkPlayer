@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Categories=GTK;Music;
+Exec=qvkplayer %f
+Icon=qvkplayer
+StartupNotify=true
+Type=Application
+Terminal=false
+MimeType=audio/mpeg;audio/basic;audio/x-aiff;audio/wav;audio/x-mpegurl;
+Name=QVkPlayer
+GenericName=QVkPlayer
+Comment=Listen to your on-line music
