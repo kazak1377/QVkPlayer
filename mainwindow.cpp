@@ -13,9 +13,6 @@
 #include <QMenu>
 #include "playingcontrol.h"
 #include <phonon>
-#ifdef Q_WS_WIN
-#include "Windows.h"
-#endif
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWindow)
@@ -101,33 +98,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
 
 void MainWindow::globalHotKeys()
 {
-    //I wasn't able to install Qxt. So here some platform-dependent code(((
-#ifdef Q_WS_X11
-    // linux code
-#elif defined(Q_WS_WIN)
-    if (RegisterHotKey(
-                NULL,
-                1,
-                MOD_ALT | MOD_NOREPEAT,
-                0x42))  //0x42 is 'b'
-    {
-        qDebug()<<"Hotkey 'ALT+b' registered, using MOD_NOREPEAT flag\n";
-    }
 
-    MSG msg = {0};
-    while (GetMessage(&msg, NULL, 0, 0) != 0)
-    {
-        if (msg.message == WM_HOTKEY)
-        {
-            qDebug()<<"WM_HOTKEY received\n";
-        }
-    }
-#elif defined(Q_WS_MACOSX)
-    // mac
-#endif
 }
 
-void MainWindow::searchNav(int i)
+void MainWindow::searchNav(int /*i*/)
 {
 }
 
@@ -197,7 +171,7 @@ void MainWindow::selectThatSong(int row,int /*coulumn*/)
     ui->musicWidget->item(row,2)->setSelected(true);
 }
 
-void MainWindow::playThatSong(int row,int coulumn)
+void MainWindow::playThatSong(int row,int /*coulumn*/)
 {
     emit playUrl(row);
 }
