@@ -54,6 +54,6 @@ void vkAuth::slotUrlChanged(QUrl url)
     QMessageBox::information(
                 this,
                 tr("Login successful"),
-                tr("You heve successfuly log in.") );
+                tr("You have successfuly log in.") );
     emit tokenSet(token,uid);
 }
