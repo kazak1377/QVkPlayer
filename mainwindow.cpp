@@ -14,14 +14,11 @@
 #include "playingcontrol.h"
 #include <phonon>
 
-
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->showTime->hide();
     ui->lineEdit->setPlaceholderText("Search here");
-    ui->sNext->hide();
-    ui->sPrev->hide();
     //ui->lineEdit->hide();
     ui->loopButton->hide();
     setWindowIcon(QIcon(QPixmap(":/dark/icons/qvk.ico")));
@@ -96,15 +93,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
 
 }
 
-void MainWindow::globalHotKeys()
-{
-
-}
-
-void MainWindow::searchNav(int /*i*/)
-{
-}
-
 void MainWindow::currentSearch(QString text)
 {
     qDebug()<<"USER IS SEARCHING======================================";
@@ -114,9 +102,6 @@ void MainWindow::currentSearch(QString text)
     foundList = ui->musicWidget->findItems(text,Qt::MatchContains);
     if(!foundList.isEmpty())
     {
-        ui->sNext->show();
-        ui->sPrev->show();
-        ui->sPrev->setDisabled(true);
         qDebug()<<"Found at row: " ;
         qDebug()<<foundList[0]->row()+1;
         ui->musicWidget->selectRow(foundList[0]->row());
@@ -171,7 +156,7 @@ void MainWindow::selectThatSong(int row,int /*coulumn*/)
     ui->musicWidget->item(row,2)->setSelected(true);
 }
 
-void MainWindow::playThatSong(int row,int /*coulumn*/)
+void MainWindow::playThatSong(int row,int coulumn)
 {
     emit playUrl(row);
 }
@@ -223,7 +208,6 @@ void MainWindow::loginSlot()
     vkAuth *loginWindow = new vkAuth;
     QObject::connect(loginWindow,SIGNAL(tokenSet(QString,QString)),SLOT(setToken(QString,QString)));
     loginWindow->show();
-    deleteLater();
 }
 
 void MainWindow::replyFinished(QNetworkReply *reply)

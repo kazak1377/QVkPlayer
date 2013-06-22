@@ -38,8 +38,6 @@ private:
     QAction *login;
     QMenu *eyemenu;
     void *customMessageHandler(QtMsgType type, const char *msg);
-    void searchNav(int i);
-    void globalHotKeys();
 
 
 public slots:
